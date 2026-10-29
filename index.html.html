@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forma Home — Personalize your control</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{color-scheme:dark;--bg:#0b0d12;--surface:#12161e;--surface2:#191f2a;--surface3:#202837;--line:#2a3443;--text:#f3f5f8;--muted:#9ca8b8;--accent:#a6f36c;--accent-ink:#14210b;--blue:#91a9ff;--good:#a6f36c;--shadow:0 24px 70px #0005;--camera:#090c11}
+[data-theme="light"]{color-scheme:light;--bg:#f4f6f8;--surface:#fff;--surface2:#f0f3f6;--surface3:#e6ebf0;--line:#dbe1e8;--text:#17202b;--muted:#657286;--accent:#416c18;--accent-ink:#fff;--blue:#465edb;--good:#416c18;--shadow:0 24px 70px #25364b12;--camera:#e5eaf0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;transition:background .25s,color .25s}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.shell{max-width:1320px;margin:auto;padding:0 32px}.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:20px}.brand{display:flex;align-items:center;gap:11px;font:800 16px Manrope,sans-serif;letter-spacing:-.6px}.brandmark{width:35px;height:35px;border-radius:12px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}.brandmark svg{width:21px;height:21px}.brand em{font-style:normal;color:var(--muted);font-weight:500}.topright{display:flex;align-items:center;gap:12px}.status-chip{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:100px;padding:8px 12px;color:var(--muted);font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}.iconbtn{height:39px;width:39px;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:12px;display:grid;place-items:center}.iconbtn svg{width:18px;height:18px}
+.hero{padding:55px 0 35px;display:flex;align-items:end;justify-content:space-between;gap:30px}.kicker{color:var(--accent);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:2px}.hero h1{font:800 clamp(34px,5vw,58px)/1.04 Manrope,sans-serif;letter-spacing:-2.8px;margin:14px 0 16px;max-width:720px}.hero h1 span{color:var(--muted)}.hero p{color:var(--muted);line-height:1.7;max-width:610px;margin:0;font-size:15px}.hero-note{border:1px solid var(--line);background:var(--surface);padding:15px 17px;border-radius:16px;max-width:230px;flex-shrink:0}.hero-note b{display:block;font:700 13px Manrope;margin-bottom:5px}.hero-note span{color:var(--muted);font-size:12px;line-height:1.5}
+.workspace{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(390px,.96fr);gap:20px;align-items:start;padding-bottom:60px}.panel{border:1px solid var(--line);background:var(--surface);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}.panelhead{padding:22px 24px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px}.panelhead h2{font:700 17px Manrope;margin:0;letter-spacing:-.4px}.step{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:6px 8px}.panelbody{padding:22px 24px 24px}.section{margin-bottom:25px}.section:last-child{margin-bottom:0}.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.section-title label,.section-title strong{font:700 13px Manrope}.hint{font-size:11px;color:var(--muted)}.select,input[type=text]{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:var(--surface2);color:var(--text);outline:none}.select:focus,input:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent)}.device-select{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.device-option{border:1px solid var(--line);background:var(--surface2);border-radius:13px;padding:12px 6px 10px;color:var(--text);display:flex;align-items:center;flex-direction:column;gap:8px;transition:.2s}.device-option.active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface2));box-shadow:inset 0 0 0 1px var(--accent)}.device-option span{font-size:11px;font-weight:600}.sticker{width:46px;height:46px;display:grid;place-items:center}.sticker svg{width:100%;height:100%;overflow:visible}.gesture-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.gesture{border:1px solid var(--line);background:var(--surface2);border-radius:14px;padding:12px 6px 10px;color:var(--text);transition:transform .18s,border-color .18s,background .18s}.gesture:hover{transform:translateY(-2px)}.gesture.active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface2));box-shadow:inset 0 0 0 1px var(--accent)}.gesture-art{height:57px;display:grid;place-items:center;margin-bottom:8px}.gesture-art svg{height:55px;width:55px;filter:drop-shadow(0 5px 7px #0002)}.gesture b{font-size:11px;display:block}.gesture small{font-size:10px;color:var(--muted);display:block;margin-top:4px}.phrase-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fieldlabel{display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:700;margin-bottom:8px}.state-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}.input-icon{position:relative}.input-icon svg{width:16px;height:16px;position:absolute;left:13px;top:13px;color:var(--muted)}.input-icon input{padding-left:38px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:23px}.btn{border:1px solid transparent;border-radius:12px;padding:12px 16px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,opacity .15s}.btn:hover{transform:translateY(-1px)}.btn svg{width:15px;height:15px}.btn-primary{background:var(--accent);color:var(--accent-ink)}.btn-secondary{background:var(--surface2);color:var(--text);border-color:var(--line)}.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}.savedline{font-size:12px;color:var(--accent);min-height:18px;margin-top:13px}
+.rightcol{display:flex;flex-direction:column;gap:20px}.light-panel{padding:22px;background:linear-gradient(140deg,var(--surface2),var(--surface));position:relative;min-height:310px}.light-head{display:flex;justify-content:space-between;align-items:start;gap:12px}.light-head h2{font:700 17px Manrope;margin:0 0 6px}.light-head p{color:var(--muted);font-size:12px;margin:0}.livebadge{font-size:10px;text-transform:uppercase;letter-spacing:1px;border:1px solid var(--line);border-radius:100px;padding:7px 9px;color:var(--muted);white-space:nowrap}.room{height:174px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:8px 0 0}.room:before{content:"";position:absolute;width:250px;height:155px;bottom:-50px;border-radius:50%;background:var(--accent);opacity:.05;filter:blur(40px);transition:.4s}.room.on:before{opacity:.24;filter:blur(32px)}.lamp{position:relative;width:120px;height:150px;display:flex;align-items:center;flex-direction:column;transition:.3s}.lamp .cord{height:22px;width:2px;background:var(--muted);opacity:.7}.lamp .shade{width:82px;height:42px;background:linear-gradient(145deg,#4c596c,#252f3e);border:1px solid #6b7787;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);border-radius:4px 4px 14px 14px;position:relative;z-index:2;transition:.3s}.lamp .shade:after{content:"";position:absolute;bottom:0;left:10%;width:80%;height:3px;border-radius:50%;background:#8793a4}.lamp .glow{position:absolute;top:58px;width:135px;height:80px;background:#ffe6a3;filter:blur(24px);opacity:0;transition:.3s}.lamp .bulb{width:34px;height:36px;border-radius:45% 45% 35% 35%;background:#485467;border:1px solid #6b7787;margin-top:-2px;z-index:1;transition:.3s}.lamp .bulb:after{content:"";display:block;width:17px;height:7px;border-radius:2px;background:#788598;margin:33px auto 0}.room.on .lamp .shade{background:linear-gradient(145deg,#fff2bf,#e9b957);border-color:#fff0bd;filter:drop-shadow(0 0 16px #ffd76b88)}.room.on .lamp .bulb{background:#fff3bf;box-shadow:0 0 22px #ffe28d}.room.on .lamp .glow{opacity:.85}.room.on .lamp{transform:translateY(-2px)}.light-controls{display:flex;gap:9px}.light-controls .btn{flex:1}.state-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:15px;margin-top:4px}.state-row span{color:var(--muted);font-size:12px}.state-pill{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700}.state-pill:before{content:"";width:7px;height:7px;border-radius:50%;background:#7d8796}.state-pill.on{color:var(--accent)}.state-pill.on:before{background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.camera-panel .panelhead{padding:18px 20px}.camera-panel .panelbody{padding:18px 20px}.cam-frame{position:relative;background:var(--camera);border:1px solid var(--line);border-radius:15px;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center}.cam-frame video{width:100%;height:100%;object-fit:cover;display:none;transform:scaleX(-1)}.cam-placeholder{text-align:center;padding:20px;max-width:310px}.cam-placeholder .cam-icon{width:58px;height:58px;border-radius:18px;border:1px solid var(--line);background:var(--surface2);display:grid;place-items:center;margin:0 auto 12px}.cam-icon svg{width:26px;height:26px;color:var(--muted)}.cam-placeholder b{display:block;font:700 13px Manrope;margin-bottom:6px}.cam-placeholder p{color:var(--muted);font-size:11px;line-height:1.55;margin:0}.cam-overlay{position:absolute;inset:0;pointer-events:none;display:none}.cam-overlay:before{content:"";position:absolute;inset:12%;border:1px solid #a6f36c88;border-radius:18px}.cam-overlay:after{content:"CAMERA PREVIEW";position:absolute;left:12px;top:12px;color:#fff;background:#0008;border-radius:5px;padding:5px 7px;font-size:9px;letter-spacing:1px}.cam-actions{display:flex;gap:9px;margin-top:12px}.cam-actions .btn{flex:1}.privacy{display:flex;align-items:start;gap:8px;color:var(--muted);font-size:10px;line-height:1.5;margin-top:12px}.privacy svg{width:14px;height:14px;flex-shrink:0;color:var(--accent)}.camera-status{font-size:11px;color:var(--muted);margin-top:10px;min-height:16px}
+.profile-panel{padding:19px 20px}.profile-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.profile-top h3{font:700 14px Manrope;margin:0}.profile-top span{font-size:10px;color:var(--muted)}.profile-summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.summary-item{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:12px}.summary-item small{font-size:10px;color:var(--muted);display:block;margin-bottom:7px}.summary-item b{font-size:12px;font-weight:700;overflow-wrap:anywhere}.footnote{color:var(--muted);font-size:11px;line-height:1.6;padding:16px 2px 0}.footer{border-top:1px solid var(--line);padding:22px 0 30px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:980px){.workspace{grid-template-columns:1fr}.rightcol{display:grid;grid-template-columns:1fr 1fr;align-items:start}.light-panel{grid-column:1/-1}.hero{align-items:start;flex-direction:column}.hero-note{max-width:100%}}
+@media(max-width:620px){.shell{padding:0 16px}.topbar{height:68px}.status-chip{display:none}.hero{padding:40px 0 26px}.hero h1{letter-spacing:-1.7px}.workspace{gap:14px}.panelhead,.panelbody{padding-left:17px;padding-right:17px}.rightcol{display:flex}.gesture-grid{grid-template-columns:repeat(2,1fr)}.device-select{grid-template-columns:repeat(2,1fr)}.phrase-grid{grid-template-columns:1fr}.light-panel{padding:18px}.cam-actions{flex-direction:column}.footer{flex-direction:column}}
+
+.appliance-stage{min-height:150px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;margin:8px 0 0}
+.fan-visual{width:150px;height:150px;position:relative;display:none;align-items:center;justify-content:center}
+.fan-blades{position:relative;width:112px;height:112px;animation:fanSpin 1s linear infinite;animation-play-state:paused}
+.fan-blades.spinning{animation-play-state:running}
+.fan-blades .blade{position:absolute;left:49px;top:7px;width:17px;height:48px;border-radius:70% 20% 65% 25%;background:linear-gradient(135deg,#c5d7ed,#607b9c);border:1px solid #8ca5c2;transform-origin:7px 49px}
+.fan-blades .blade:nth-child(2){transform:rotate(120deg)}
+.fan-blades .blade:nth-child(3){transform:rotate(240deg)}
+.fan-hub{position:absolute;width:22px;height:22px;border-radius:50%;background:#9db2cb;border:2px solid #526b89;z-index:2}
+@keyframes fanSpin{to{transform:rotate(360deg)}}
+.door-visual{display:none;width:100px;height:130px;border:5px solid #7e9c8d;border-bottom:0;border-radius:7px 7px 0 0;background:linear-gradient(90deg,#c6d9cf,#8ab39e);position:relative}
+.door-visual:after{content:"";position:absolute;right:13px;top:60px;width:9px;height:9px;border-radius:50%;background:#446c59}
+.door-visual.locked:before{content:"";position:absolute;left:36px;top:40px;width:24px;height:25px;border:3px solid #47755d;border-radius:6px}
+.ac-visual{display:none;width:190px;height:76px;border-radius:16px;background:linear-gradient(140deg,#d9efff,#86b7d6);border:2px solid #669bbd;position:relative;box-shadow:0 10px 30px #6bbbe533}
+.ac-visual:before{content:"";position:absolute;left:13px;right:13px;top:22px;height:2px;background:#78a9c8;box-shadow:0 6px #78a9c8,0 12px #78a9c8}
+.ac-visual:after{content:"";position:absolute;right:13px;top:10px;width:6px;height:6px;border-radius:50%;background:#416f91}
+.room.device-fan:before{opacity:.12}.room.device-door:before,.room.device-ac:before{opacity:.08}
+.speed-control{display:none;align-items:center;gap:10px;margin-top:13px}.speed-control span{font-size:11px;color:var(--muted)}.speed-bar{height:5px;flex:1;border-radius:99px;background:var(--surface3);overflow:hidden}.speed-fill{height:100%;width:33%;background:var(--accent);border-radius:99px;transition:width .25s}
+.speed-buttons{display:flex;gap:8px;margin-top:10px}.speed-buttons .btn{flex:1}
+.gesture-detection-row{display:flex;gap:8px;align-items:center;margin-top:12px}.gesture-detection-row .btn{flex:1}.detect-indicator{font-size:10px;color:var(--muted);min-width:78px;text-align:right}
+@media(max-width:620px){.speed-buttons{flex-direction:column}.gesture-detection-row{flex-wrap:wrap}.detect-indicator{width:100%;text-align:left}}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body data-theme="dark">
+<div class="shell">
+<header class="topbar">
+  <a class="brand" href="#" aria-label="Forma Home home">
+    <div class="brandmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h5l3-7 3 14 2-7h3"/></svg></div>
+    <span>forma <em>/ home</em></span>
+  </a>
+  <div class="topright">
+    <div class="status-chip"><i class="dot"></i> PERSONALIZATION STUDIO</div>
+    <button class="iconbtn" id="themeBtn" aria-label="Toggle light or dark mode" title="Toggle theme">
+      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+    </button>
+  </div>
+</header>
+<section class="hero">
+  <div>
+    <div class="kicker">A more personal kind of smart home</div>
+    <h1>Control that feels<br><span>like it belongs to you.</span></h1>
+    <p>Choose the gestures and voice phrases that feel natural to you. Preview your setup, test the interaction, and shape a more personal way to control your home.</p>
+  </div>
+  <div class="hero-note"><b>Designed around you</b><span>A concept interface for adaptive, multimodal home automation.</span></div>
+</section>
+
+<div class="workspace">
+<section class="panel">
+  <div class="panelhead"><h2>Customize your controls</h2><span class="step">01 / SETUP</span></div>
+  <div class="panelbody">
+    <div class="section">
+      <div class="section-title"><strong>Choose a device</strong><span class="hint">What are you controlling?</span></div>
+      <div class="device-select" id="deviceSelect">
+        <button class="device-option active" data-device="Light" data-label="Room light">
+          <div class="sticker"><svg viewBox="0 0 48 48" fill="none"><path d="M24 5c-8 0-13 6-13 13 0 5 3 8 6 11 2 2 2 4 2 5h10c0-2 0-3 2-5 3-3 6-6 6-11C37 11 32 5 24 5Z" fill="#F7D779" stroke="#C79A37" stroke-width="1.5"/><path d="M19 35h10m-9 4h8m-6 4h4" stroke="#9B7A36" stroke-width="2" stroke-linecap="round"/><path d="M18 18c1-4 4-6 7-6" stroke="#FFF5C8" stroke-width="2.5" stroke-linecap="round"/></svg></div><span>Light</span>
+        </button>
+        <button class="device-option" data-device="Fan" data-label="Ceiling fan">
+          <div class="sticker"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="25" r="5" fill="#90A7C9" stroke="#526B91" stroke-width="1.5"/><path d="M24 20C20 9 25 5 30 7c4 2 1 8-2 13M29 25c12-3 16 2 13 7-2 4-8 0-14-2M22 29C19 40 13 42 10 38c-3-4 3-8 10-11M20 23C11 17 12 11 17 10c5-1 6 6 7 10" fill="#BFD1EC" stroke="#6D85AA" stroke-width="1.5" stroke-linejoin="round"/></svg></div><span>Fan</span>
+        </button>
+        <button class="device-option" data-device="Door" data-label="Smart lock">
+          <div class="sticker"><svg viewBox="0 0 48 48" fill="none"><rect x="9" y="5" width="30" height="39" rx="4" fill="#A9C8B7" stroke="#527D68" stroke-width="1.5"/><rect x="15" y="10" width="18" height="29" rx="2" fill="#DDECE4" stroke="#7BA48F"/><circle cx="28" cy="25" r="2" fill="#527D68"/><path d="M18 4V2h12v2" stroke="#527D68" stroke-width="1.5"/></svg></div><span>Door lock</span>
+        </button>
+        <button class="device-option" data-device="AC" data-label="Air conditioner">
+          <div class="sticker"><svg viewBox="0 0 48 48" fill="none"><rect x="4" y="10" width="40" height="21" rx="5" fill="#B8DDF4" stroke="#6499BC" stroke-width="1.5"/><path d="M10 17h28M10 21h28" stroke="#7DB4D7" stroke-width="1.5" stroke-linecap="round"/><path d="M15 34c-2 3 2 4 0 7m9-7c-2 3 2 4 0 7m9-7c-2 3 2 4 0 7" stroke="#76A6C8" stroke-width="2" stroke-linecap="round"/></svg></div><span>Air con</span>
+        </button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><strong>Gesture for power ON</strong><span class="hint">Choose a symbol</span></div>
+      <div class="gesture-grid" id="onGestures">
+        <button class="gesture active" data-symbol="thumbs-up" data-name="Thumbs up"><div class="gesture-art"><svg viewBox="0 0 64 64" fill="none"><path d="M24 29 32 10c2-5 8-3 8 2l-1 11h11c5 0 7 4 5 8l-7 20c-1 3-4 5-8 5H24V29Z" fill="#F4C6A2" stroke="#B8795B" stroke-width="2"/><path d="M12 28h12v28H12c-3 0-5-2-5-5V33c0-3 2-5 5-5Z" fill="#7D9AE7" stroke="#5068B2" stroke-width="2"/><path d="m32 12-1 10" stroke="#FFE5CF" stroke-width="2" stroke-linecap="round"/></svg></div><b>Thumbs up</b><small>Familiar & easy</small></button>
+        <button class="gesture" data-symbol="peace" data-name="Peace sign"><div class="gesture-art"><svg viewBox="0 0 64 64" fill="none"><path d="M22 31V10c0-5 7-5 7 0v17V7c0-5 7-5 7 0v21l2-10c1-5 8-3 7 2l-2 15c-1 10-7 19-18 19-9 0-15-7-15-15V25c0-5 7-6 8-1l4 7Z" fill="#F2C4A0" stroke="#B8795B" stroke-width="2" stroke-linejoin="round"/><path d="M20 34c3 6 9 9 15 9" stroke="#DFA27C" stroke-width="2" stroke-linecap="round"/></svg></div><b>Peace sign</b><small>Two fingers raised</small></button>
+        <button class="gesture" data-symbol="open-palm" data-name="Open palm"><div class="gesture-art"><svg viewBox="0 0 64 64" fill="none"><path d="M13 30V16c0-5 7-5 7 0v9V9c0-5 7-5 7 0v16V7c0-5 7-5 7 0v18V12c0-5 7-5 7 0v16l3-7c2-4 8-2 7 3l-4 17c-2 9-8 14-18 14-9 0-15-6-15-15V30Z" fill="#EBC19E" stroke="#B8795B" stroke-width="2" stroke-linejoin="round"/><path d="M20 34c5 4 11 4 16 1" stroke="#DFA27C" stroke-width="2" stroke-linecap="round"/></svg></div><b>Open palm</b><small>Simple wave</small></button>
+        <button class="gesture" data-symbol="rock" data-name="Rock sign"><div class="gesture-art"><svg viewBox="0 0 64 64" fill="none"><path d="M17 31V10c0-5 7-5 7 0v17V7c0-5 7-5 7 0v20V12c0-5 7-5 7 0v16l3-7c2-4 8-2 7 3l-4 17c-2 9-8 14-18 14-9 0-15-6-15-15V31Z" fill="#F0C19E" stroke="#B8795B" stroke-width="2" stroke-linejoin="round"/><path d="M13 31 9 20c-2-5 4-8 7-3l5 10" fill="#F0C19E" stroke="#B8795B" stroke-width="2"/></svg></div><b>Rock sign</b><small>Distinctive pose</small></button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><strong>Gesture for power OFF</strong><span class="hint">Keep it distinct</span></div>
+      <div class="gesture-grid" id="offGestures">
+        <button class="gesture active" data-symbol="thumbs-down" data-name="Thumbs down"><div class="gesture-art"><svg viewBox="0 0 64 64" fill="none"><path d="M24 35 32 54c2 5 8 3 8-2l-1-11h11c5 0 7-4 5-8l-7-20c-1-3-4-5-8-5H24v27Z" fill="#F4C6A2" stroke="#B8795B" stroke-width="2"/><path d="M12 8h12v28H12c-3 0-5-2-5-5V13c0-3 2-5 5-5Z" fill="#7D9AE7" stroke="#5068B2" stroke-width="2"/></svg></div><b>Thumbs down</b><small>Clear opposite</small></button>
+        <button class="gesture" data-symbol="fist" data-name="Closed fist"><div class="gesture-art"><svg viewBox="0 0 64 64" fill="none"><path d="M15 29V19c0-4 6-5 8-1l2 2v-6c0-5 7-5 8 0v5-4c0-5 7-5 8 0v6-3c0-5 7-5 8 0v13c0 13-7 21-19 21-9 0-15-6-15-15v-8Z" fill="#EBC19E" stroke="#B8795B" stroke-width="2"/><path d="M16 27h32M23 20v8m9-9v8m9-6v6" stroke="#DFA27C" stroke-width="2" stroke-linecap="round"/></svg></div><b>Closed fist</b><small>Compact movement</small></button>
+        <button class="gesture" data-symbol="raised-hand" data-name="Raised hand"><div class="gesture-art"><svg viewBox="0 0 64 64" fill="none"><path d="M13 30V16c0-5 7-5 7 0v9V9c0-5 7-5 7 0v16V7c0-5 7-5 7 0v18V12c0-5 7-5 7 0v16l3-7c2-4 8-2 7 3l-4 17c-2 9-8 14-18 14-9 0-15-6-15-15V30Z" fill="#EBC19E" stroke="#B8795B" stroke-width="2"/></svg></div><b>Raised hand</b><small>Open hand pose</small></button>
+        <button class="gesture" data-symbol="shaka" data-name="Shaka sign"><div class="gesture-art"><svg viewBox="0 0 64 64" fill="none"><path d="M18 32 9 20c-3-4 2-9 6-5l11 12V14c0-5 7-5 7 0v14l3-8c2-5 8-2 7 2l-1 8 4-4c4-3 8 2 5 6L40 47c-4 7-10 9-18 5-7-4-9-12-4-20Z" fill="#EBC19E" stroke="#B8795B" stroke-width="2" stroke-linejoin="round"/></svg></div><b>Shaka sign</b><small>Relaxed gesture</small></button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><strong>Fan speed gestures</strong><span class="hint">Used when Fan is selected</span></div>
+      <div class="phrase-grid">
+        <div><div class="fieldlabel"><label>INCREASE SPEED</label><span class="state-label">Gesture</span></div>
+          <select class="select" id="speedUpGesture"><option value="peace">Peace sign</option><option value="open-palm">Open palm</option><option value="rock">Rock sign</option><option value="thumbs-up">Thumbs up</option></select>
+        </div>
+        <div><div class="fieldlabel"><label>DECREASE SPEED</label><span class="state-label">Gesture</span></div>
+          <select class="select" id="speedDownGesture"><option value="fist">Closed fist</option><option value="thumbs-down">Thumbs down</option><option value="peace">Peace sign</option><option value="open-palm">Open palm</option></select>
+        </div>
+      </div>
+      <div class="hint" style="margin-top:8px">The same camera can adjust the fan's 3-step speed while the fan is selected and on.</div>
+    </div>
+    <div class="section">
+      <div class="section-title"><strong>Personal voice commands</strong><span class="hint">Edit the phrases</span></div>
+      <div class="phrase-grid">
+        <div><div class="fieldlabel"><label for="onPhrase">POWER ON</label><span class="state-label">Voice phrase</span></div><div class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></svg><input id="onPhrase" type="text" maxlength="60" value="Turn on the light"></div></div>
+        <div><div class="fieldlabel"><label for="offPhrase">POWER OFF</label><span class="state-label">Voice phrase</span></div><div class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v10m-6.36-6.36a9 9 0 1 0 12.72 0"/></svg><input id="offPhrase" type="text" maxlength="60" value="Turn off the light"></div></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="saveBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h12l3 3v13H4V4h1Z"/><path d="M8 4v6h8V4M8 20v-7h8v7"/></svg> Save profile</button>
+      <button class="btn btn-secondary" id="resetBtn">Reset changes</button>
+    </div>
+    <div class="savedline" id="saveStatus" aria-live="polite"></div>
+  </div>
+</section>
+
+<div class="rightcol">
+  <section class="panel light-panel">
+    <div class="light-head"><div><h2>Live device preview</h2><p>Try the controls and watch the room respond.</p></div><span class="livebadge">SIMULATION</span></div>
+    <div class="room" id="room">
+      <div class="lamp" id="lampVisual"><div class="cord"></div><div class="shade"></div><div class="glow"></div><div class="bulb"></div></div>
+      <div class="fan-visual" id="fanVisual"><div class="fan-blades" id="fanBlades"><div class="blade"></div><div class="blade"></div><div class="blade"></div></div><div class="fan-hub"></div></div>
+      <div class="door-visual" id="doorVisual"></div>
+      <div class="ac-visual" id="acVisual"></div>
+    </div>
+    <div class="light-controls"><button class="btn btn-primary" id="turnOnBtn">Power on</button><button class="btn btn-secondary" id="turnOffBtn">Power off</button></div>
+    <div class="cam-actions" style="margin-top:10px"><button class="btn btn-secondary" id="voiceBtn">Enable voice control</button><span class="detect-indicator" id="voiceStatus">Voice control off</span></div>
+    <div class="speed-control" id="speedControl"><span>FAN SPEED</span><div class="speed-bar"><div class="speed-fill" id="speedFill"></div></div><b id="speedLabel">1 / 3</b></div>
+    <div class="speed-buttons" id="speedButtons" style="display:none"><button class="btn btn-secondary" id="speedDownBtn">− Slow down</button><button class="btn btn-secondary" id="speedUpBtn">+ Speed up</button></div>
+    <div class="state-row"><span id="stateDescription">Device is switched off</span><b class="state-pill" id="statePill">OFF</b></div>
+  </section>
+  <section class="panel camera-panel">
+    <div class="panelhead"><h2>Camera preview</h2><span class="step">02 / CHECK</span></div>
+    <div class="panelbody">
+      <div class="cam-frame" id="camFrame">
+        <video id="camera" autoplay playsinline muted></video>
+        <div class="cam-placeholder" id="camPlaceholder"><div class="cam-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5h-4l-2 3H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-4l-2-3Z"/><circle cx="12" cy="14" r="3.5"/></svg></div><b>Check your camera framing</b><p>Start the preview, then enable gesture control. Hold a selected pose in view to control the simulated device.</p></div>
+        <div class="cam-overlay" id="camOverlay"></div>
+      </div>
+      <div class="cam-actions"><button class="btn btn-primary" id="startCamBtn">Start camera preview</button><button class="btn btn-secondary" id="stopCamBtn" disabled>Stop camera</button></div>
+      <div class="gesture-detection-row"><button class="btn btn-secondary" id="detectBtn" disabled>Enable gesture control</button><div class="detect-indicator" id="detectStatus">Detection off</div></div>
+      <div class="camera-status" id="cameraStatus" aria-live="polite">Camera is off. It starts only when you press the button.</div>
+      <div class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3"/></svg><span>Your browser will ask for camera permission. Video stays in this page and is not recorded or uploaded by this demo. Camera access usually requires HTTPS or localhost.</span></div>
+    </div>
+  </section>
+  <section class="panel profile-panel">
+    <div class="profile-top"><h3>Your current profile</h3><span>LIVE SUMMARY</span></div>
+    <div class="profile-summary">
+      <div class="summary-item"><small>ON GESTURE</small><b id="summaryOnGesture">Thumbs up</b></div>
+      <div class="summary-item"><small>OFF GESTURE</small><b id="summaryOffGesture">Thumbs down</b></div>
+      <div class="summary-item"><small>VOICE ON</small><b id="summaryOnPhrase">Turn on the light</b></div>
+      <div class="summary-item"><small>VOICE OFF</small><b id="summaryOffPhrase">Turn off the light</b></div>
+      <div class="summary-item"><small>FAN SPEED UP</small><b id="summarySpeedUp">Peace sign</b></div>
+      <div class="summary-item"><small>FAN SPEED DOWN</small><b id="summarySpeedDown">Closed fist</b></div>
+    </div>
+    <p class="footnote">Browser demo: selected gestures are recognized by the camera for the preview. These controls do not connect to your Arduino or update your separate Python program. Custom gesture options are limited to the supported poses listed here.</p>
+  </section>
+</div>
+</div>
+<footer class="footer"><span>FORMA / HOME · Adaptive control concept</span><span>Personalized inputs. Clear feedback. Human-first design.</span></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const initial={device:"Light",deviceLabel:"Room light",onSymbol:"thumbs-up",onName:"Thumbs up",offSymbol:"thumbs-down",offName:"Thumbs down",onPhrase:"Turn on the light",offPhrase:"Turn off the light",speedUpGesture:"peace",speedDownGesture:"fist",isOn:false,fanSpeed:1};
+let profile={...initial},stream=null,handsModel=null,detecting=false,frameBusy=false,lastAction="",stableCount=0,lastCandidate="",lastGestureTime=0;
+const deviceInfo={Light:{label:"Room light"},Fan:{label:"Ceiling fan"},Door:{label:"Smart lock"},AC:{label:"Air conditioner"}};
+const gestureNames={"thumbs-up":"Thumbs up","thumbs-down":"Thumbs down","peace":"Peace sign","open-palm":"Open palm","fist":"Closed fist","rock":"Rock sign","shaka":"Shaka sign","raised-hand":"Raised hand"};
+function render(){
+  const isLight=profile.device==="Light",isFan=profile.device==="Fan",isDoor=profile.device==="Door",isAC=profile.device==="AC";
+  $("room").classList.toggle("on",profile.isOn);
+  $("room").classList.toggle("device-fan",isFan);$("room").classList.toggle("device-door",isDoor);$("room").classList.toggle("device-ac",isAC);
+  $("lampVisual").style.display=isLight?"flex":"none";$("fanVisual").style.display=isFan?"flex":"none";$("doorVisual").style.display=isDoor?"block":"none";$("acVisual").style.display=isAC?"block":"none";
+  $("doorVisual").classList.toggle("locked",!profile.isOn);
+  $("stateDescription").textContent=profile.isOn?deviceInfo[profile.device].label+" is switched on":deviceInfo[profile.device].label+" is switched off";
+  $("statePill").textContent=profile.isOn?"ON":"OFF";$("statePill").classList.toggle("on",profile.isOn);
+  $("summaryOnGesture").textContent=profile.onName;$("summaryOffGesture").textContent=profile.offName;
+  $("summaryOnPhrase").textContent=profile.onPhrase.trim()||"Not set";$("summaryOffPhrase").textContent=profile.offPhrase.trim()||"Not set";
+  $("summarySpeedUp").textContent=gestureNames[profile.speedUpGesture]||profile.speedUpGesture;
+  $("summarySpeedDown").textContent=gestureNames[profile.speedDownGesture]||profile.speedDownGesture;
+  $("turnOnBtn").textContent="Power on";$("turnOffBtn").textContent="Power off";
+  $("speedControl").style.display=isFan?"flex":"none";$("speedButtons").style.display=isFan?"flex":"none";
+  $("speedFill").style.width=(profile.fanSpeed/3*100)+"%";$("speedLabel").textContent=profile.isOn?profile.fanSpeed+" / 3": "OFF";
+  $("fanBlades").classList.toggle("spinning",isFan&&profile.isOn);$("fanBlades").style.animationDuration=({1:"1.8s",2:"0.85s",3:"0.35s"})[profile.fanSpeed];
+  $("fanBlades").style.opacity=profile.isOn?"1":".45";
+  $("turnOnBtn").disabled=profile.isOn;$("turnOffBtn").disabled=!profile.isOn;
+}
+function setPower(on,source){
+  profile.isOn=on;
+  if(profile.device==="Fan" && on && profile.fanSpeed<1) profile.fanSpeed=1;
+  render();
+  $("saveStatus").textContent=(source||"Preview")+" action: "+(on?"ON":"OFF")+". "+deviceInfo[profile.device].label+" preview updated.";
+}
+function changeSpeed(delta,source){
+  if(profile.device!=="Fan"){ $("saveStatus").textContent="Select Fan to adjust fan speed.";return;}
+  if(!profile.isOn){setPower(true,source||"Gesture");}
+  profile.fanSpeed=Math.max(1,Math.min(3,profile.fanSpeed+delta));render();
+  $("saveStatus").textContent="Fan speed set to "+profile.fanSpeed+" of 3.";
+}
+function bindGesture(group,keySymbol,keyName){
+  document.querySelectorAll("#"+group+" .gesture").forEach(btn=>btn.addEventListener("click",()=>{
+    document.querySelectorAll("#"+group+" .gesture").forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+    profile[keySymbol]=btn.dataset.symbol;profile[keyName]=btn.dataset.name;render();
+  }));
+}
+bindGesture("onGestures","onSymbol","onName");bindGesture("offGestures","offSymbol","offName");
+document.querySelectorAll(".device-option").forEach(btn=>btn.addEventListener("click",()=>{
+  document.querySelectorAll(".device-option").forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+  profile.device=btn.dataset.device;profile.deviceLabel=btn.dataset.label;render();
+}));
+$("onPhrase").addEventListener("input",e=>{profile.onPhrase=e.target.value;render()});
+$("offPhrase").addEventListener("input",e=>{profile.offPhrase=e.target.value;render()});
+$("speedUpGesture").addEventListener("change",e=>{profile.speedUpGesture=e.target.value;render()});
+$("speedDownGesture").addEventListener("change",e=>{profile.speedDownGesture=e.target.value;render()});
+$("turnOnBtn").addEventListener("click",()=>setPower(true,"Manual preview"));
+$("turnOffBtn").addEventListener("click",()=>setPower(false,"Manual preview"));
+$("speedUpBtn").addEventListener("click",()=>changeSpeed(1,"Manual preview"));
+$("speedDownBtn").addEventListener("click",()=>changeSpeed(-1,"Manual preview"));
+$("saveBtn").addEventListener("click",()=>{
+  try{localStorage.setItem("formaHomeDemoProfile",JSON.stringify(profile));$("saveStatus").textContent="Profile saved in this browser for demo purposes."}
+  catch(e){$("saveStatus").textContent="Profile updated. Browser storage is unavailable."}
+});
+$("resetBtn").addEventListener("click",()=>{
+  profile={...initial};$("onPhrase").value=initial.onPhrase;$("offPhrase").value=initial.offPhrase;$("speedUpGesture").value=initial.speedUpGesture;$("speedDownGesture").value=initial.speedDownGesture;
+  document.querySelectorAll(".gesture,.device-option").forEach(b=>b.classList.remove("active"));
+  document.querySelector('#onGestures [data-symbol="thumbs-up"]').classList.add("active");
+  document.querySelector('#offGestures [data-symbol="thumbs-down"]').classList.add("active");
+  document.querySelector('.device-option[data-device="Light"]').classList.add("active");
+  $("saveStatus").textContent="Settings reset.";render();
+});
+$("themeBtn").addEventListener("click",()=>{
+  const next=document.body.dataset.theme==="dark"?"light":"dark";document.body.dataset.theme=next;
+  $("themeIcon").innerHTML=next==="dark"
+  ?'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>'
+  :'<path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z"/>';
+});
+
+let recognition=null, voiceListening=false;
+function stopVoice(){
+  voiceListening=false;
+  if(recognition){try{recognition.stop()}catch(e){}}
+  $("voiceBtn").textContent="Enable voice control";
+  $("voiceStatus").textContent="Voice control off";
+}
+$("voiceBtn").addEventListener("click",()=>{
+  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(voiceListening){stopVoice();return;}
+  if(!SpeechRecognition){$("voiceStatus").textContent="Speech recognition not supported in this browser.";return;}
+  recognition=new SpeechRecognition();
+  recognition.lang="en-IN";recognition.continuous=true;recognition.interimResults=false;
+  recognition.onstart=()=>{voiceListening=true;$("voiceBtn").textContent="Stop voice control";$("voiceStatus").textContent="Listening…";};
+  recognition.onresult=(event)=>{
+    const result=event.results[event.results.length-1][0].transcript.trim().toLowerCase();
+    $("voiceStatus").textContent='Heard: "'+result+'"';
+    const onPhrase=profile.onPhrase.trim().toLowerCase(),offPhrase=profile.offPhrase.trim().toLowerCase();
+    if(onPhrase && result.includes(onPhrase)){setPower(true,"Voice command");}
+    else if(offPhrase && result.includes(offPhrase)){setPower(false,"Voice command");}
+    else if(profile.device==="Fan" && /speed up|increase speed|faster/.test(result)){changeSpeed(1,"Voice command");}
+    else if(profile.device==="Fan" && /slow down|decrease speed|slower/.test(result)){changeSpeed(-1,"Voice command");}
+  };
+  recognition.onerror=(event)=>{$("voiceStatus").textContent="Voice error: "+event.error;if(event.error==="not-allowed")stopVoice();};
+  recognition.onend=()=>{if(voiceListening){try{recognition.start()}catch(e){}}};
+  try{recognition.start();}catch(e){$("voiceStatus").textContent="Could not start microphone: "+e.message;}
+});
+
+$("startCamBtn").addEventListener("click",async()=>{
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){$("cameraStatus").textContent="Camera preview needs a supported browser and a secure context (HTTPS or localhost).";return;}
+  try{
+    stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user"},audio:false});
+    $("camera").srcObject=stream;await $("camera").play();$("camera").style.display="block";$("camPlaceholder").style.display="none";$("camOverlay").style.display="block";
+    $("startCamBtn").disabled=true;$("stopCamBtn").disabled=false;$("detectBtn").disabled=false;
+    $("cameraStatus").textContent="Camera is running. Enable gesture control to let detected poses operate the preview.";
+  }catch(err){$("cameraStatus").textContent=err.name==="NotAllowedError"?"Camera permission was denied. Allow camera access in browser settings and try again.":"Could not start camera: "+err.message;}
+});
+async function initHands(){
+  if(handsModel) return handsModel;
+  if(!window.Hands) throw new Error("Gesture engine could not load. Check your internet connection and refresh.");
+  handsModel=new Hands({locateFile:(file)=>`https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`});
+  handsModel.setOptions({maxNumHands:1,modelComplexity:1,minDetectionConfidence:.65,minTrackingConfidence:.6});
+  handsModel.onResults(onHandResults);
+  return handsModel;
+}
+function classifyGesture(lm){
+  const wrist=lm[0], thumbTip=lm[4], thumbIp=lm[3];
+  const extended={
+    index:lm[8].y<lm[6].y,
+    middle:lm[12].y<lm[10].y,
+    ring:lm[16].y<lm[14].y,
+    pinky:lm[20].y<lm[18].y
+  };
+  const curled=Object.values(extended).filter(Boolean).length;
+  const thumbUp=thumbTip.y < thumbIp.y-.025 && Math.abs(thumbTip.x-thumbIp.x)<.22;
+  const thumbDown=thumbTip.y > thumbIp.y+.025 && Math.abs(thumbTip.x-thumbIp.x)<.22;
+  if(thumbUp && curled===0) return "thumbs-up";
+  if(thumbDown && curled===0) return "thumbs-down";
+  if(extended.index && extended.middle && !extended.ring && !extended.pinky) return "peace";
+  if(extended.index && extended.pinky && !extended.middle && !extended.ring) return "rock";
+  if(extended.index && extended.middle && extended.ring && extended.pinky) return "open-palm";
+  if(!extended.index && !extended.middle && !extended.ring && !extended.pinky) return "fist";
+  if(thumbTip.x < lm[3].x-.04 && extended.pinky && !extended.index && !extended.middle && !extended.ring) return "shaka";
+  return null;
+}
+function onHandResults(results){
+  if(!detecting)return;
+  const hands=results.multiHandLandmarks;
+  if(!hands||!hands.length){lastCandidate="";stableCount=0;$("detectStatus").textContent="Show one hand";return;}
+  const pose=classifyGesture(hands[0]);
+  if(!pose){lastCandidate="";stableCount=0;$("detectStatus").textContent="Hand seen · pose unclear";return;}
+  $("detectStatus").textContent="Detected: "+(gestureNames[pose]||pose);
+  if(pose===lastCandidate) stableCount++; else {lastCandidate=pose;stableCount=1;}
+  if(stableCount>=5 && Date.now()-lastGestureTime>1400){
+    lastGestureTime=Date.now();
+    if(pose===profile.onSymbol){setPower(true,"Camera gesture");}
+    else if(pose===profile.offSymbol){setPower(false,"Camera gesture");}
+    else if(profile.device==="Fan" && profile.isOn && pose===profile.speedUpGesture){changeSpeed(1,"Camera gesture");}
+    else if(profile.device==="Fan" && profile.isOn && pose===profile.speedDownGesture){changeSpeed(-1,"Camera gesture");}
+  }
+}
+async function detectLoop(){
+  if(!detecting||!stream)return;
+  const video=$("camera");
+  if(video.readyState>=2&&!frameBusy){
+    frameBusy=true;
+    try{const model=await initHands();await model.send({image:video});}
+    catch(e){$("cameraStatus").textContent=e.message||"Gesture detection failed.";detecting=false;$("detectBtn").textContent="Enable gesture control";$("detectStatus").textContent="Detection off";}
+    frameBusy=false;
+  }
+  if(detecting) requestAnimationFrame(detectLoop);
+}
+$("detectBtn").addEventListener("click",async()=>{
+  if(!stream)return;
+  if(detecting){detecting=false;$("detectBtn").textContent="Enable gesture control";$("detectStatus").textContent="Detection off";$("cameraStatus").textContent="Camera preview is running; gesture detection is paused.";return;}
+  try{
+    $("detectBtn").disabled=true;$("detectStatus").textContent="Loading gesture engine…";
+    await initHands();detecting=true;$("detectBtn").textContent="Pause gesture control";$("cameraStatus").textContent="Gesture control active. Hold a selected gesture steadily for a moment.";detectLoop();
+  }catch(e){$("cameraStatus").textContent=e.message||"Could not start gesture detection.";$("detectStatus").textContent="Could not load";}finally{$("detectBtn").disabled=false;}
+});
+function stopCamera(){
+  detecting=false;
+  if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+  $("camera").srcObject=null;$("camera").style.display="none";$("camPlaceholder").style.display="block";$("camOverlay").style.display="none";
+  $("startCamBtn").disabled=false;$("stopCamBtn").disabled=true;$("detectBtn").disabled=true;$("detectBtn").textContent="Enable gesture control";$("detectStatus").textContent="Detection off";$("cameraStatus").textContent="Camera is off.";
+}
+$("stopCamBtn").addEventListener("click",stopCamera);
+window.addEventListener("beforeunload",()=>{if(stream)stream.getTracks().forEach(t=>t.stop());if(recognition){try{recognition.stop()}catch(e){}}});
+render();
+</script>
+</body>
+</html>
